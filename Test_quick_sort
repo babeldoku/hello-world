@@ -1,0 +1,19 @@
+/* A generic quicksort function. Shows how to use generics,
+   recursion, and functional extensions in Swift.
+*/
+
+func quickSort<T: Comparable>(a: [T]) -> [T] {
+    if a.isEmpty {
+        return a
+    }
+    else {
+        let head = a[0]
+        let body = a[1..<a.count]
+        let left = quickSort(body.filter({$0 < head}))
+        let right = quickSort(body.filter({$0 >= head}))
+        return left + [head] + right
+    }
+}
+
+print(quickSort([3,1,7,9,4,2,8]))
+print(quickSort(["goat","arm","toe","dog","bat"]))
